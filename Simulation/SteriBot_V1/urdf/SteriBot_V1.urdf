@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="SteriBot_V1">
+  <link
+    name="Robot_Body">
+    <inertial>
+      <origin
+        xyz="0.000104042129668613 0.0877816025915936 -0.00690008826215147"
+        rpy="0 0 0" />
+      <mass
+        value="2.13809371197155" />
+      <inertia
+        ixx="0.0304746948350179"
+        ixy="2.28485885750178E-06"
+        ixz="-5.07528464719343E-06"
+        iyy="0.0462735273259771"
+        iyz="-0.00117116630054818"
+        izz="0.0264404448884293" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://SteriBot_V1/meshes/Robot_Body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://SteriBot_V1/meshes/Robot_Body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Right_Wheel">
+    <inertial>
+      <origin
+        xyz="-2.77555756156289E-17 3.46944695195361E-17 -0.0130550774526678"
+        rpy="0 0 0" />
+      <mass
+        value="0.0730106132694267" />
+      <inertia
+        ixx="2.0643141959258E-05"
+        ixy="-8.470329472543E-22"
+        ixz="4.02472403053964E-22"
+        iyy="2.0643141959258E-05"
+        iyz="-3.06929109187452E-23"
+        izz="3.30769494037039E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://SteriBot_V1/meshes/Right_Wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://SteriBot_V1/meshes/Right_Wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Wheel_Joint"
+    type="continuous">
+    <origin
+      xyz="0.165 -0.10676 0.01775"
+      rpy="1.5708 -0.54317 -1.5708" />
+    <parent
+      link="Robot_Body" />
+    <child
+      link="Right_Wheel" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Left_Wheel">
+    <inertial>
+      <origin
+        xyz="-8.32667268468867E-17 1.2490009027033E-16 0.013030888030888"
+        rpy="0 0 0" />
+      <mass
+        value="0.073230524755178" />
+      <inertia
+        ixx="2.06605749493452E-05"
+        ixy="-1.6940658945086E-21"
+        ixz="4.05447365964337E-21"
+        iyy="2.06605749493452E-05"
+        iyz="-1.97469498516513E-21"
+        izz="3.30796982972758E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://SteriBot_V1/meshes/Left_Wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://SteriBot_V1/meshes/Left_Wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Wheel_Joint"
+    type="continuous">
+    <origin
+      xyz="-0.165 -0.10676 0.01775"
+      rpy="1.5708 -0.54317 -1.5708" />
+    <parent
+      link="Robot_Body" />
+    <child
+      link="Left_Wheel" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
