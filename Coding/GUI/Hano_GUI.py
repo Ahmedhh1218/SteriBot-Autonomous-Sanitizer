@@ -1,5 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLineEdit, QPushButton, QLabel, QMessageBox
+import requests
+from PyQt5.QtWidgets import QApplication, QWidget, QLineEdit, QPushButton, QLabel, QMessageBox, QVBoxLayout
 from PyQt5.QtGui import QPixmap, QPainter, QColor
 from PyQt5.QtCore import Qt
 
@@ -10,7 +11,7 @@ class HomeScreen(QWidget):
 
     def initUI(self):
         self.setWindowTitle('Home Screen')
-        self.setFixedSize(800, 800)  # Set window size to 1920x1080
+        self.setFixedSize(800, 800)  # Set window size to 800x800
 
         # Adding background image
         background_label = QLabel(self)
@@ -78,20 +79,31 @@ class NumberInputScreen(QWidget):
     def processInput(self):
         numbers_text = self.number_input.text()
         numbers = [num.strip() for num in numbers_text.split(',')]
+        valid_numbers = []
+
         for idx, num in enumerate(numbers):
             try:
                 number = float(num)
-                # Print to the terminal
+                valid_numbers.append(number)
                 print(f"Number {idx + 1}: {number}")
-                 # Close the current screen and open the room states screen
-                self.close()
-                self.openRoomStatesScreen(len(numbers) + 1)
-
             except ValueError:
                 QMessageBox.warning(self, 'Invalid Number', 'Please enter valid numbers.')
                 print(f"Invalid input '{num}'. Please enter valid numbers.")
-        
-       
+                return
+
+        if valid_numbers:
+            self.sendData(valid_numbers)
+            self.close()
+            self.openRoomStatesScreen(len(valid_numbers) + 1)
+
+    def sendData(self, numbers):
+        data = {'numbers': numbers}
+        try:
+            response = requests.post('http://192.168.1.3:5000/data', json=data)
+            print(response.json())
+        except requests.exceptions.RequestException as e:
+            print("Error:", e)
+
     def openRoomStatesScreen(self, num_circles):
         self.room_states_screen = RoomStatesScreen(self.width, num_circles)
         self.room_states_screen.show()
